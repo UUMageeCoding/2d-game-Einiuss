@@ -10,14 +10,17 @@ public class PlatformerController : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundCheckRadius = 0.2f;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private Animator animator;
     
     private Rigidbody2D rb;
+    private SpriteRenderer sr;
     private bool isGrounded;
     private float moveInput;
     
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
         
         // Set to Dynamic with gravity
         rb.bodyType = RigidbodyType2D.Dynamic;
@@ -29,6 +32,8 @@ public class PlatformerController : MonoBehaviour
     {
         // Get horizontal input
         moveInput = Input.GetAxisRaw("Horizontal");
+
+
         
         // Check if grounded
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
@@ -37,6 +42,16 @@ public class PlatformerController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+        }
+
+        if (moveInput != 0){
+            animator.SetBool("isRunning",true);
+
+            if (moveInput > 0) sr.flipX = false;
+            if (moveInput < 0) sr.flipX = true;
+        }
+        else{
+            animator.SetBool("isRunning", false);
         }
     }
     
