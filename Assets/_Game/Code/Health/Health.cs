@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
+
 public class Health : MonoBehaviour
 {
     [SerializeField] private float startingHealth;
@@ -57,10 +58,12 @@ public class Health : MonoBehaviour
         Physics2D.IgnoreLayerCollision(8,9,true);
         for (int i = 0; i < numberOfFlashes; i++)
         {
-            spriteRend.color = new color(1, 0, 0, .5f);
-            yield return new WaitForSeconds(1);
-            spriteRend.c
+            spriteRend.color = new Color(1, 0, 0, .8f);
+            yield return new WaitForSeconds(iFrameDuration / (numberOfFlashes*2));
+            spriteRend.color = Color.white;
+            yield return new WaitForSeconds(iFrameDuration / (numberOfFlashes * 2));
         }
+        Physics2D.IgnoreLayerCollision(8, 9, false);
     }
 
    /* private void Update()
