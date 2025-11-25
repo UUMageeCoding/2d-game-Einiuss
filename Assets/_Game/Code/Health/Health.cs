@@ -14,6 +14,9 @@ public class Health : MonoBehaviour
     [SerializeField] private float numberOfFlashes;
     private SpriteRenderer spriteRend;
 
+    [SerializeField] private Behaviour[] components;
+    private bool invulnerable;
+
     private void Awake()
     {
         currentHealth = startingHealth;
@@ -26,6 +29,8 @@ public class Health : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth + _value, 0, startingHealth);
         
     }
+
+
 
     public void TakeDamage(float _damage)
 
@@ -42,9 +47,11 @@ public class Health : MonoBehaviour
         {
             if (!dead) 
             {
+                
+
                 anim.SetTrigger("die");
                 GetComponent<PlatformerController>().enabled = false;
-                dead = true;
+                dead = true; 
             }
             
         }
