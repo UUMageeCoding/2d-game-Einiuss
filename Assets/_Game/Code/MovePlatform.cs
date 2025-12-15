@@ -16,6 +16,8 @@ public class MovePlatform : MonoBehaviour
         leftEdge = transform.position.x - movementDistance;
         rightEdge = transform.position.x + movementDistance;
         rb.bodyType = RigidbodyType2D.Kinematic;
+
+        //calculates both boundaries and sets the platform to kinematic so code can move it
     }
 
     private void FixedUpdate()
@@ -31,6 +33,8 @@ public class MovePlatform : MonoBehaviour
         {
             if (x < rightEdge) x += speed * Time.fixedDeltaTime;
             else movingLeft = true;
+
+            //movement of the platform
         }
 
         rb.MovePosition(new Vector2(x, rb.position.y));

@@ -10,12 +10,14 @@ public class totalBar : MonoBehaviour
     private void Start()
     {
         totalhealthBar.fillAmount = playerHealth.currentHealth / 3;
+        //sets the healthbar to full at the start
     }
 
 
     private void Update()
     {
         currenthealthBar.fillAmount = playerHealth.currentHealth / 3;
+        //updates the healthbar to match the hp the player currently has 
     }
 
 }

@@ -12,19 +12,23 @@ public class Key : MonoBehaviour
 
     {
         currentBar = 0;
+        //coin count
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-            Debug.Log("E");
+        /*if (Input.GetKeyDown(KeyCode.E))
+            Debug.Log("E");*/
     }
 
 
     public void AddCoin(float _value)
     {
         currentBar = Mathf.Clamp(currentBar + _value, 0, maxBar);
-        Debug.Log( currentBar);
+        //add 1 to coinbar everytime player collects coin
+
+
+        //Debug.Log( currentBar);
 
     }
 }

@@ -11,11 +11,13 @@ public class Coin : MonoBehaviour
             if (collision.tag == "Player")
             {
                 var key = collision.GetComponent<Key>();
+                //calls the key amount from the player
                 
 
                 if (key != null)
                     key.AddCoin(coinValue);
                 gameObject.SetActive(false);
+                //if the player has the key component then add the coin value to it and remove the coin object
             }
         }
     }

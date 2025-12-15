@@ -1,11 +1,13 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Door : MonoBehaviour
 {
     [SerializeField] private Key key;          
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject pressEPrompt;
+    [SerializeField] private GameObject spotlight;
     private bool playerInRange;
     private bool doorOpened;
 
@@ -14,6 +16,7 @@ public class Door : MonoBehaviour
         animator.SetBool("isOpen", false);
         if (pressEPrompt != null)
             pressEPrompt.SetActive(false);
+        //hides press e promt
     }
 
     private void Update()
@@ -23,10 +26,12 @@ public class Door : MonoBehaviour
         {
             if (pressEPrompt != null)
                 pressEPrompt.SetActive(true);
+            //show e interaction promt
 
             if (Input.GetKeyDown(KeyCode.E))
             {
                 EnterDoor();
+                //calls enter door method
             }
         }
     }
@@ -39,6 +44,7 @@ public class Door : MonoBehaviour
             if (!doorOpened && key.currentBar >= 4)
             {
                 OpenDoor();
+                //if player has collected all 4 keys and is in range of door, open door animation
             }
         }
     }
@@ -50,6 +56,8 @@ public class Door : MonoBehaviour
             playerInRange = false;
             if (pressEPrompt != null)
                 pressEPrompt.SetActive(false);
+            
+            //if door is open and player is in range show e promt
         }
     }
 
@@ -60,15 +68,16 @@ public class Door : MonoBehaviour
             animator.SetBool("isOpen", true);
             Debug.Log("Door opening");
             doorOpened = true;
+            if (spotlight != null)
+                spotlight.SetActive(true);
+            //door opening 
         }
     }
 
     private void EnterDoor()
     {
         Debug.Log("Entered door");
+        SceneManager.LoadScene(3);
 
-        // TODO: Replace with what entering does:
-        // SceneManager.LoadScene("NextLevel");
-        // OR teleport player
     }
 }

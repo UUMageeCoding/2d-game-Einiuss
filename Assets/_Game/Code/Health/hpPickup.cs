@@ -12,6 +12,7 @@ public class hpPickup : MonoBehaviour
         {
             collision.GetComponent<Health>().AddHealth(healthValue);
             gameObject.SetActive(false);
+            //if player hits pickup, add health and remove pickup object
         }
     }
 }

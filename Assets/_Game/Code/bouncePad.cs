@@ -19,7 +19,9 @@ public class bouncePad : MonoBehaviour
         if (rb)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
+            //reset player vertical velocity
             rb.AddForce(Vector2.up * bounceforce, ForceMode2D.Impulse);
+            //apply upward force
         }
     }
 

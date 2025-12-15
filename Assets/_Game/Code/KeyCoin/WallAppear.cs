@@ -12,8 +12,10 @@ public class WallAppear : MonoBehaviour
         {
             if (Wall != null)
                 Wall.SetActive(true);
+            //if there is a wall, wall is set to be active
 
             collision.transform.position = startPoint.position;
+            //teleports player back to start point when they pickup coin
         }
 
     }

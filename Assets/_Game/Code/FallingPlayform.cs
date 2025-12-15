@@ -10,7 +10,7 @@ public class FallingPlayform : MonoBehaviour
     Rigidbody2D rb;
     private Vector3 startPosition;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -19,14 +19,16 @@ public class FallingPlayform : MonoBehaviour
     private void Awake()
     {
         startPosition = transform.position;
+        //get platform position
     }
 
-    // Update is called once per frame
+    
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (!isFalling && collision.gameObject.CompareTag("Player"))
         {
             StartCoroutine(Fall());
+            //when player land on it, platform will start falltimer
         }
     }
 
@@ -38,6 +40,7 @@ public class FallingPlayform : MonoBehaviour
         //Destroy(gameObject, DestroyWait);
         yield return new WaitForSeconds(DestroyWait);
         RespawnPlatform();
+        //enables falling platform and wait timer for platform to respawn
     }
     private void RespawnPlatform()
     {
@@ -47,5 +50,6 @@ public class FallingPlayform : MonoBehaviour
         rb.gravityScale = 0f;
         rb.bodyType = RigidbodyType2D.Kinematic;
         transform.position = startPosition;
+        //respawns the platform in its original place
     }
 }

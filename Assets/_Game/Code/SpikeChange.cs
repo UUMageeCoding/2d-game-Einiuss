@@ -19,6 +19,8 @@ public class NewMonoBehaviourScript1 : MonoBehaviour
 
             spriteRenderer.sprite = newSprite;
             collision.transform.position = startPoint.position;
+
+            //change spike sprite and teleport player back to a set position
         }
 
     }

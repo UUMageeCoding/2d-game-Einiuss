@@ -11,6 +11,7 @@ public class Keybar : MonoBehaviour
     private void Start()
     {
         totalkeyBar.fillAmount = 1f;
+        //sets the bar to be blank
     }
 
 
@@ -18,6 +19,7 @@ public class Keybar : MonoBehaviour
     {
        
         currentkeyBar.fillAmount = playerCoins.currentBar / 4f;
+        //updates the bar by 1 when player picks up a coin
         
     }
 

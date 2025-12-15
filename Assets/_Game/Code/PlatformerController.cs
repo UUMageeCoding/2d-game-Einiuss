@@ -11,12 +11,18 @@ public class PlatformerController : MonoBehaviour
     [SerializeField] private float groundCheckRadius = 0.2f;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Animator animator;
-    
+
+    [Header("Coyote Time")]
+    [SerializeField] private float coyoteTime = 0.15f; 
+    private float coyoteTimeCounter;
+
     private Rigidbody2D rb;
     private SpriteRenderer sr;
     private bool isGrounded;
+    private bool wasGrounded;
     private float moveInput;
-    
+    private bool jumpUsed;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -30,18 +36,37 @@ public class PlatformerController : MonoBehaviour
     
     void Update()
     {
+
         // Get horizontal input
         moveInput = Input.GetAxisRaw("Horizontal");
 
 
-        
+
         // Check if grounded
+        wasGrounded = isGrounded;
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-        
+
+        if (!wasGrounded && isGrounded)
+        {
+            jumpUsed = false;
+        }
+
         // Jump input
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (isGrounded)
+        {
+            coyoteTimeCounter = coyoteTime;
+            
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
+
+        if (Input.GetButtonDown("Jump") && !jumpUsed && coyoteTimeCounter > 0f)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            jumpUsed = true;
+            coyoteTimeCounter = 0f; 
         }
 
         if (moveInput != 0){
