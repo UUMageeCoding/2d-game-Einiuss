@@ -9,7 +9,7 @@ public class Health : MonoBehaviour
     private Animator anim;
     private bool dead;
 
-
+    //iframe settings
     [SerializeField] private float iFrameDuration;
     [SerializeField] private float numberOfFlashes;
     private SpriteRenderer spriteRend;
@@ -31,7 +31,7 @@ public class Health : MonoBehaviour
     public void AddHealth(float _value)
     {
         currentHealth = Mathf.Clamp(currentHealth + _value, 0, startingHealth);
-
+        //+1 health
     }
 
 
@@ -40,11 +40,13 @@ public class Health : MonoBehaviour
 
     {
         currentHealth = Mathf.Clamp(currentHealth - _damage, 0, startingHealth);
+        //-1 health
 
         if (currentHealth > 0)
         {
             anim.SetTrigger("hurt");
             StartCoroutine(Invunerability());
+            //animation and flashes for damage
         }
 
         else
@@ -52,10 +54,10 @@ public class Health : MonoBehaviour
             if (!dead)
             {
 
-
                 anim.SetTrigger("die");
                 GetComponent<PlatformerController>().enabled = false;
                 dead = true;
+                //death animation and player movement is disabled
             }
 
         }
@@ -73,8 +75,10 @@ public class Health : MonoBehaviour
             yield return new WaitForSeconds(iFrameDuration / (numberOfFlashes * 2));
             spriteRend.color = Color.white;
             yield return new WaitForSeconds(iFrameDuration / (numberOfFlashes * 2));
+            //flash player red and white
         }
         Physics2D.IgnoreLayerCollision(8, 9, false);
+        //ignores the enemy layer
     }
 public void CheckHealth()
     {
@@ -82,6 +86,7 @@ public void CheckHealth()
         {
             uiManager.GameOver();
             return;
+            //if player is dead game over screen will play
         }
 
     }

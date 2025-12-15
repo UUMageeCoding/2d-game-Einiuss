@@ -7,12 +7,11 @@ public class Coin : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Coin trigger hit by: " + collision.name);
         {
             if (collision.tag == "Player")
             {
                 var key = collision.GetComponent<Key>();
-                Debug.Log("Key component found? " + (key != null));
+                
 
                 if (key != null)
                     key.AddCoin(coinValue);

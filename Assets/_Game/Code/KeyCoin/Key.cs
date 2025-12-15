@@ -24,7 +24,7 @@ public class Key : MonoBehaviour
     public void AddCoin(float _value)
     {
         currentBar = Mathf.Clamp(currentBar + _value, 0, maxBar);
-        Debug.Log("Current Bar: " + currentBar);
+        Debug.Log( currentBar);
 
     }
 }

@@ -13,6 +13,7 @@ public class EnemySideways : MonoBehaviour
     {
         leftEdge = transform.position.x - movementDistance;
         rightEdge = transform.position.x + movementDistance;
+        //calculate left and right boundaries
     }
 
 
@@ -43,7 +44,7 @@ public class EnemySideways : MonoBehaviour
             }
         }
 
-
+        //switching direction of movement when each boundary is reached
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -51,5 +52,7 @@ public class EnemySideways : MonoBehaviour
         {
             collision.GetComponent<Health>().TakeDamage(damage);
         }
+
+    //if object touching player, player takes damage
     }
 }

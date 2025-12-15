@@ -16,9 +16,9 @@ public class Keybar : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("UI sees bar: " + playerCoins.currentBar);
+       
         currentkeyBar.fillAmount = playerCoins.currentBar / 4f;
-        Debug.Log($"UI fill: {currentkeyBar.fillAmount}  bar: {playerCoins.currentBar}");
+        
     }
 
 }
