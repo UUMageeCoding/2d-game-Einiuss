@@ -50,6 +50,7 @@ public class EnemySideways : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     { if (collision.tag == "Player")
         {
+            SoundEffectManager.Play("Damage");
             collision.GetComponent<Health>().TakeDamage(damage);
         }
 

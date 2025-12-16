@@ -16,6 +16,8 @@ public class Coin : MonoBehaviour
 
                 if (key != null)
                     key.AddCoin(coinValue);
+
+                SoundEffectManager.Play("Coin");
                 gameObject.SetActive(false);
                 //if the player has the key component then add the coin value to it and remove the coin object
             }
