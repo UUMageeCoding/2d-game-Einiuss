@@ -3,7 +3,8 @@ using UnityEngine.UI;
 
 public class SoundEffectManager : MonoBehaviour
 {
-    private static SoundEffectManager instance;
+    public static SoundEffectManager instance;
+    public static SoundEffectManager Instance => instance;
     private static AudioSource audioSource;
     private static SoundEffectLibrary soundEffectLibrary;
     [SerializeField] private Slider sfxSlider;
@@ -48,6 +49,13 @@ public class SoundEffectManager : MonoBehaviour
     public void OnValueChanged()
     {
         SetVolume(sfxSlider.value);
+    }
+
+    public static float GetVolume()
+    {
+        if (audioSource != null)
+            return audioSource.volume;
+        return 1f; 
     }
 
 }
