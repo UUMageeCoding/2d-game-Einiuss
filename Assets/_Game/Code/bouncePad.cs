@@ -22,6 +22,7 @@ public class bouncePad : MonoBehaviour
             //reset player vertical velocity
             rb.AddForce(Vector2.up * bounceforce, ForceMode2D.Impulse);
             //apply upward force
+            SoundEffectManager.Play("Bounce");
         }
     }
 

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class UIManager : MonoBehaviour
 {
@@ -39,6 +40,8 @@ public class UIManager : MonoBehaviour
 
     public void Play()
     {
+        if (MusicManager.Instance != null)
+            Destroy(MusicManager.instance.gameObject);
         SceneManager.LoadScene(1);
 
     }

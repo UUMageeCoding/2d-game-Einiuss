@@ -19,13 +19,16 @@ public class Arrow : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
             ChangePosition(-1);
+            
         //move up
         if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
             ChangePosition(1);
+            
         //move down
 
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.E))
         Interact();
+        
         //select current
 
 
@@ -33,6 +36,7 @@ public class Arrow : MonoBehaviour
     private void ChangePosition(int _change)
     {
         currentPosition += _change;
+        SoundEffectManager.Play("Select");
 
 
         if (currentPosition < 0)
